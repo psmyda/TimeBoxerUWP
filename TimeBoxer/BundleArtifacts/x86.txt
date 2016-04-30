@@ -1,0 +1,2 @@
+MainPackage=D:\_Roboczy\Repositories\MyProjects\TimeBoxerUWP\TimeBoxer\TimeBoxer\bin\x86\Release\TimeBoxer_1.0.0.0_x86.appx
+SymbolPackage=D:\_Roboczy\Repositories\MyProjects\TimeBoxerUWP\TimeBoxer\TimeBoxer\AppPackages\TimeBoxer_1.0.0.0_Test\TimeBoxer_1.0.0.0_x86.appxsym
