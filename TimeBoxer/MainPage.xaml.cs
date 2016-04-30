@@ -43,7 +43,7 @@ namespace TimeBoxer
 
         private void UpdateLabels()
         {
-            Screen.Text = timerTime.ToString();
+            screen.Text = timerTime.ToString();
         }
 
         private void Timer_Tick(object sender, object e)
@@ -61,15 +61,15 @@ namespace TimeBoxer
         {
             if (timerTime > TimeSpan.Zero)
             {
-                StartBtn.Visibility = Visibility.Collapsed;
+                startBtn.Visibility = Visibility.Collapsed;
                 timer.Start();
             }
         }
 
         public void PlayAlarm()
         {
-            MediaElement.Source = new Uri("ms-appx:///Assets/AlarmBeep.wav");
-            MediaElement.Play();
+            mediaElement.Source = new Uri("ms-appx:///Assets/AlarmBeep.wav");
+            mediaElement.Play();
         }
 
         public void AddTime(TimeSpan timeValue)
@@ -86,7 +86,7 @@ namespace TimeBoxer
             }
             else
             {
-                timer.Stop();
+                StopTime();
             }
 
             UpdateLabels();
@@ -96,7 +96,7 @@ namespace TimeBoxer
         {
             timer.Stop();
             timerTime = TimeSpan.Zero;
-            StartBtn.Visibility = Visibility.Visible;
+            startBtn.Visibility = Visibility.Visible;
             UpdateLabels();
         }
 
