@@ -22,7 +22,7 @@
         <Button x:Name="manipulateBtn7" Content="+1h" HorizontalAlignment="Left" Height="36" Margin="10,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn7_Click"/>
         <Button x:Name="manipulateBtn8" Content="+2h" HorizontalAlignment="Left" Height="36" Margin="126,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn8_Click"/>
         <Button x:Name="manipulateBtn9" Content="+5h" HorizontalAlignment="Left" Height="36" Margin="249,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn9_Click"/>
-        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="107" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" Background="{ThemeResource ToolTipBackgroundThemeBrush}"/>
+        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="107" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" Background="{ThemeResource ToolTipBackgroundThemeBrush}" IsReadOnly="True"/>
         <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="100" Margin="24,122,0,0" VerticalAlignment="Top" Width="100" Visibility="Collapsed"/>
 
 
