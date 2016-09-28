@@ -1,24 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using System.Threading;
+﻿using Microsoft.Toolkit.Uwp.Notifications; // Notifications library
+using System;
 using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
+
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace TimeBoxer
 {
+    using Windows.UI.Notifications;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -97,6 +90,7 @@ namespace TimeBoxer
             timer.Stop();
             timerTime = TimeSpan.Zero;
             startBtn.Visibility = Visibility.Visible;
+            SendToast();
             UpdateLabels();
         }
 
@@ -132,29 +126,74 @@ namespace TimeBoxer
 
         private void manipulateBtn6_Click(object sender, RoutedEventArgs e)
         {
-            AddTime(TimeSpan.FromMinutes(30));
+            AddTime(TimeSpan.FromMinutes(25));
         }
 
         private void manipulateBtn7_Click(object sender, RoutedEventArgs e)
         {
-            AddTime(TimeSpan.FromMinutes(60));
+            AddTime(TimeSpan.FromMinutes(30));
         }
 
         private void manipulateBtn8_Click(object sender, RoutedEventArgs e)
         {
-            AddTime(TimeSpan.FromMinutes(120));
+            AddTime(TimeSpan.FromMinutes(60));
         }
 
         private void manipulateBtn9_Click(object sender, RoutedEventArgs e)
         {
-            //AddTime(TimeSpan.FromMinutes(300));
-            AddTime(TimeSpan.FromSeconds(5));
+            AddTime(TimeSpan.FromMinutes(120));
+            //AddTime(TimeSpan.FromSeconds(5));
         }
 
         private void stopBtn_Click(object sender, RoutedEventArgs e)
         {
             StopTime();
         }
+
+        public void SendToast()
+        {
+
+            string title = "TimeBoxerApp";
+            string content = "Timer is over";
+
+            // Construct the visuals of the toast
+            ToastVisual visual = new ToastVisual()
+            {
+                BindingGeneric = new ToastBindingGeneric()
+                {
+                    Children =
+                    {
+                        new AdaptiveText()
+                        {
+                            Text = title
+                        },
+
+                        new AdaptiveText()
+                        {
+                            Text = content
+                        },
+
+                    },
+                }
+            };
+
+            ToastContent toastContent = new ToastContent()
+            {
+                Visual = visual,
+            };
+
+            // And create the toast notification
+            var toast = new ToastNotification(toastContent.GetXml());
+
+            toast.ExpirationTime = DateTime.Now.AddHours(1);
+
+            toast.Tag = "1";
+            toast.Group = "TimeBoxer";
+
+            ToastNotificationManager.CreateToastNotifier().Show(toast);
+        }
+
     }
-    
+
+
 }

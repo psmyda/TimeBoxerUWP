@@ -4,9 +4,9 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="360" Height="345">
+    mc:Ignorable="d" Margin="0,0,0,0" Height="345" Width="360">
 
-    <Grid Width="360" Height="345" Background="{ThemeResource SearchBoxPointerOverBackgroundThemeBrush}" MaxWidth="360" MaxHeight="345" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="360" MinHeight="345">
+    <Grid Background="{ThemeResource SearchBoxPointerOverBackgroundThemeBrush}" MaxWidth="360" MaxHeight="345" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="360" MinHeight="345" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
@@ -15,15 +15,22 @@
         <Button x:Name="stopBtn" Content="Reset" HorizontalAlignment="Left" Height="36" Margin="190,134,0,0" VerticalAlignment="Top" Width="160" Click="stopBtn_Click"/>
         <Button x:Name="manipulateBtn1" Content="-1m" HorizontalAlignment="Left" Height="36" Margin="10,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn1_Click"/>
         <Button x:Name="manipulateBt2" Content="+1m" HorizontalAlignment="Left" Height="36" Margin="127,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBt2_Click"/>
-        <Button x:Name="manipulateBtn3" Content="+2m" HorizontalAlignment="Left" Height="36" Margin="249,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn3_Click"/>
+        <Button x:Name="manipulateBtn3" Content="+2m" HorizontalAlignment="Left" Height="36" Margin="249,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn3_Click">
+            <Button.Flyout>
+                <Flyout>
+                    <Grid Height="100" Width="100"/>
+                </Flyout>
+            </Button.Flyout>
+        </Button>
         <Button x:Name="manipulateBtn4" Content="+5m" HorizontalAlignment="Left" Height="36" Margin="10,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn4_Click"/>
         <Button x:Name="manipulateBtn5" Content="+15m" HorizontalAlignment="Left" Height="36" Margin="127,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn5_Click"/>
-        <Button x:Name="manipulateBtn6" Content="+30m" HorizontalAlignment="Left" Height="36" Margin="249,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn6_Click"/>
-        <Button x:Name="manipulateBtn7" Content="+1h" HorizontalAlignment="Left" Height="36" Margin="10,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn7_Click"/>
-        <Button x:Name="manipulateBtn8" Content="+2h" HorizontalAlignment="Left" Height="36" Margin="126,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn8_Click"/>
-        <Button x:Name="manipulateBtn9" Content="+5h" HorizontalAlignment="Left" Height="36" Margin="249,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn9_Click"/>
-        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="107" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" Background="{ThemeResource ToolTipBackgroundThemeBrush}" IsReadOnly="True"/>
+        <Button x:Name="manipulateBtn6" Content="+25m" HorizontalAlignment="Left" Height="36" Margin="249,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn6_Click"/>
+        <Button x:Name="manipulateBtn7" Content="+30m" HorizontalAlignment="Left" Height="36" Margin="10,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn7_Click"/>
+        <Button x:Name="manipulateBtn8" Content="+1h" HorizontalAlignment="Left" Height="36" Margin="126,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn8_Click"/>
+        <Button x:Name="manipulateBtn9" Content="+2h" HorizontalAlignment="Left" Height="36" Margin="249,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn9_Click"/>
+        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="82" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" Background="{ThemeResource ToolTipBackgroundThemeBrush}" IsReadOnly="True"/>
         <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="100" Margin="24,122,0,0" VerticalAlignment="Top" Width="100" Visibility="Collapsed"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="11,97,0,0" TextWrapping="Wrap" Text="Current task info" VerticalAlignment="Top" Width="325"/>
 
 
     </Grid>
