@@ -5,32 +5,94 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Margin="0,0,0,0" Height="345" Width="360">
+    <Page.Resources>
+        <Style x:Key="ContentPresenterStyle1" TargetType="ContentPresenter"/>
+        <Style x:Key="ButtonRounded" TargetType="Button">
+            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+            <Setter Property="Foreground" Value="{ThemeResource SystemControlForegroundBaseHighBrush}"/>
+            <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}"/>
+            <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}"/>
+            <Setter Property="Padding" Value="8,4,8,4"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontFamily" Value="{ThemeResource ContentControlThemeFontFamily}"/>
+            <Setter Property="FontWeight" Value="Normal"/>
+            <Setter Property="FontSize" Value="{ThemeResource ControlContentThemeFontSize}"/>
+            <Setter Property="UseSystemFocusVisuals" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid x:Name="RootGrid" Background="{TemplateBinding Background}">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="11*"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal">
+                                        <Storyboard>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerUpThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseMediumLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlHighlightBaseHighBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <PointerDownThemeAnimation Storyboard.TargetName="RootGrid"/>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background" Storyboard.TargetName="RootGrid">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground" Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0" Value="{ThemeResource SystemControlDisabledBaseMediumLowBrush}"/>
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <ContentPresenter x:Name="ContentPresenter" AutomationProperties.AccessibilityView="Raw" BorderThickness="{TemplateBinding BorderThickness}" ContentTemplate="{TemplateBinding ContentTemplate}" ContentTransitions="{TemplateBinding ContentTransitions}" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" Padding="{TemplateBinding Padding}" VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" Background="#DDFFFFFF" RequestedTheme="Light" CornerRadius="20" Grid.RowSpan="2" Foreground="Black" FontSize="15"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Grid Background="{ThemeResource SearchBoxPointerOverBackgroundThemeBrush}" MaxWidth="360" MaxHeight="345" ScrollViewer.VerticalScrollBarVisibility="Disabled" MinWidth="360" MinHeight="345" Margin="0,0,0,0">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition Width="0*"/>
         </Grid.ColumnDefinitions>
-        <Button x:Name="startBtn" Content="Start" HorizontalAlignment="Left" Height="36" Margin="10,134,0,0" VerticalAlignment="Top" Width="160" Click="controlBtn_Click"/>
-        <Button x:Name="stopBtn" Content="Reset" HorizontalAlignment="Left" Height="36" Margin="190,134,0,0" VerticalAlignment="Top" Width="160" Click="stopBtn_Click"/>
-        <Button x:Name="manipulateBtn1" Content="-1m" HorizontalAlignment="Left" Height="36" Margin="10,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn1_Click"/>
-        <Button x:Name="manipulateBt2" Content="+1m" HorizontalAlignment="Left" Height="36" Margin="127,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBt2_Click"/>
-        <Button x:Name="manipulateBtn3" Content="+2m" HorizontalAlignment="Left" Height="36" Margin="249,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn3_Click">
-            <Button.Flyout>
-                <Flyout>
-                    <Grid Height="100" Width="100"/>
-                </Flyout>
-            </Button.Flyout>
-        </Button>
-        <Button x:Name="manipulateBtn4" Content="+5m" HorizontalAlignment="Left" Height="36" Margin="10,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn4_Click"/>
-        <Button x:Name="manipulateBtn5" Content="+15m" HorizontalAlignment="Left" Height="36" Margin="127,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn5_Click"/>
-        <Button x:Name="manipulateBtn6" Content="+25m" HorizontalAlignment="Left" Height="36" Margin="249,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn6_Click"/>
-        <Button x:Name="manipulateBtn7" Content="+30m" HorizontalAlignment="Left" Height="36" Margin="10,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn7_Click"/>
-        <Button x:Name="manipulateBtn8" Content="+1h" HorizontalAlignment="Left" Height="36" Margin="126,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn8_Click"/>
-        <Button x:Name="manipulateBtn9" Content="+2h" HorizontalAlignment="Left" Height="36" Margin="249,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn9_Click"/>
-        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="82" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" Background="{ThemeResource ToolTipBackgroundThemeBrush}" IsReadOnly="True"/>
+        <Button Background="RosyBrown" x:Name="stopBtn" Content="Reset" HorizontalAlignment="Left" Height="36" Margin="190,134,0,0" VerticalAlignment="Top" Width="160" Click="stopBtn_Click" />
+        <Button Background="Wheat"  x:Name="manipulateBtn1" Content="-1m" HorizontalAlignment="Left" Height="36" Margin="10,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn1_Click" />
+        <Button Background="Wheat" x:Name="manipulateBt2" Content="+1m" HorizontalAlignment="Left" Height="36" Margin="127,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBt2_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn3" Content="+2m" HorizontalAlignment="Left" Height="36" Margin="249,188,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn3_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn4" Content="+5m" HorizontalAlignment="Left" Height="36" Margin="10,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn4_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn5" Content="+15m" HorizontalAlignment="Left" Height="36" Margin="127,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn5_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn6" Content="+25m" HorizontalAlignment="Left" Height="36" Margin="249,242,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn6_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn7" Content="+30m" HorizontalAlignment="Left" Height="36" Margin="10,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn7_Click" />
+        <Button Background="Wheat" x:Name="manipulateBtn8" Content="+1h" HorizontalAlignment="Left" Height="36" Margin="126,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn8_Click"/>
+        <Button Background="Wheat" x:Name="manipulateBtn9" Content="+2h" HorizontalAlignment="Left" Height="36" Margin="249,296,0,0" VerticalAlignment="Top" Width="100" Click="manipulateBtn9_Click"/>
+        <TextBox x:Name="screen" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Height="82" Width="339" FontFamily="Segoe WP Black" FontSize="55" FontWeight="Bold" HorizontalAlignment="Left" TextAlignment="Center" IsReadOnly="True"/>
         <MediaElement x:Name="mediaElement" HorizontalAlignment="Left" Height="100" Margin="24,122,0,0" VerticalAlignment="Top" Width="100" Visibility="Collapsed"/>
-        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="11,97,0,0" TextWrapping="Wrap" Text="Current task info" VerticalAlignment="Top" Width="325"/>
+        <TextBox x:Name="textBox" HorizontalAlignment="Left" Margin="18,97,0,0" TextWrapping="Wrap" Text="Current task info" VerticalAlignment="Top" Width="325"/>
+        <Button Background="YellowGreen"  x:Name="startBtn" HorizontalAlignment="Left" Height="36" Margin="10,134,0,0" VerticalAlignment="Top" Width="160" Click="controlBtn_Click" Content="Start"/>
+
 
 
     </Grid>
